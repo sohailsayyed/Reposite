@@ -32,4 +32,4 @@ jobs:
              [{"Key":"InstanceIds","Values":["i-04830bd1976f0fe7b"]}]
           document-name: AWS-RunShellScript
           parameters: |
-             {"commands":["touch /home/ssm-user/sohail/Reposite/test.txt "]}
+             {"commands":["git pull sohail"]}

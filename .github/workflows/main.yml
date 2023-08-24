@@ -34,8 +34,10 @@ jobs:
           aws-region: us-west-2
           instance-ids: i-04830bd1976f0fe7b
 
-          working-directory: /home/ssm-user/ri-backend/prod/ri-backend
-          command: git pull && touch ri_backend/.env1 && aws s3 cp s3://common-webportal-env/ri-backend/prod.env ri_backend/.env1 && cat ri_backend/.env1
+         # working-directory: /home/ssm-user/ri-backend/prod/ri-backend
+          working-directory: /home/ssm-user/
+         # command: git pull && touch ri_backend/.env1 && aws s3 cp s3://common-webportal-env/ri-backend/prod.env ri_backend/.env1 && cat ri_backend/.env1
+          command: touch test.txt && aws s3 cp s3://common-webportal-env/ri-backend/prod.env .
           comment: Hello world!
 
       # Catch SSM outputs

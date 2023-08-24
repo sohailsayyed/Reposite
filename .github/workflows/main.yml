@@ -37,7 +37,7 @@ jobs:
          # working-directory: /home/ssm-user/ri-backend/prod/ri-backend
           working-directory: /home/ssm-user/ri-backend/prod/ri-backend/
          # command: git pull && touch ri_backend/.env1 && aws s3 cp s3://common-webportal-env/ri-backend/prod.env ri_backend/.env1 && cat ri_backend/.env1
-          command: touch ri_backend/test.env && aws s3 cp s3://common-webportal-env/ri-backend/prod.env ri_backend/test.env
+          command: git pull && touch ri_backend/test.env && aws s3 cp s3://common-webportal-env/ri-backend/prod.env ri_backend/test.env
           comment: Hello world!
 
       # Catch SSM outputs

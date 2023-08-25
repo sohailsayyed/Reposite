@@ -26,7 +26,7 @@ jobs:
 
       - name: Run start_stop.sh
         run: |
-          ls && pwd  # Change to your repository's root directory
+          ls && pwd
           chmod +x start_stop.sh
           ./start_stop.sh
 
@@ -36,18 +36,18 @@ jobs:
     if: github.ref == 'refs/heads/master'
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2 
+      # - name: Checkout Code
+      #   uses: actions/checkout@v2 
 
       - name: Git Pull and Create Custom File
         run: |
           cd /home/ubuntu/Reposite/
           git checkout master
-          touch testec2startandstop
+          touch myss
           ls -al
           git pull
       - name: Stop EC2 Instance
         run: |
-          # Assuming INSTANCE_ID is the ID of the specific EC2 instance you want to stop
-          instance_id= ${{ secrets.INSTANCE_ID }}
-          aws ec2 stop-instances --instance-ids $instance_id --region us-west-2
+         echo "stopping instance" 
+         aws ec2 stop-instances --instance-ids i-0d15b392f27070ba4 --region us-west-2
+         echo "stopped instance" 

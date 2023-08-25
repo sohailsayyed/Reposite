@@ -18,8 +18,8 @@ jobs:
       - name: git pull and create custom file
         run: |
           cd /home/ubuntu/Reposite/
-          git checkout develop
-          touch develop
+          git checkout master
+          touch master
           ls -al
           git pull
           

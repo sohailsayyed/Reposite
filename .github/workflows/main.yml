@@ -20,5 +20,5 @@ jobs:
           cd /home/ubuntu/Reposite/
           touch github.actions-runner
           ls -al
-          git clone
+          git pull
           

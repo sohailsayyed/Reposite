@@ -1,1 +1,2 @@
 
+ssh -i "testsql.pem" ubuntu@ec12345.us-west-2.compute.amazonaws.com

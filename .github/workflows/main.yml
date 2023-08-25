@@ -33,12 +33,10 @@ jobs:
   ec2-deploy-job:
     name: Deploy on EC2
     runs-on: self-hosted
+    needs: ec2-status-job  # Specify that ec2-deploy-job needs ec2-status-job to complete
     if: github.ref == 'refs/heads/master'
 
     steps:
-      # - name: Checkout Code
-      #   uses: actions/checkout@v2 
-
       - name: Git Pull and Create Custom File
         run: |
           cd /home/ubuntu/Reposite/
@@ -50,4 +48,3 @@ jobs:
         run: |
          echo "stopping instance" 
          aws ec2 stop-instances --instance-ids i-0d15b392f27070ba4 --region us-west-2
-         echo "stopped instance" 

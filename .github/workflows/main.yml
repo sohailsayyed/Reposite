@@ -46,3 +46,8 @@ jobs:
           touch testec2startandstop
           ls -al
           git pull
+      - name: Stop EC2 Instance
+        run: |
+          # Assuming INSTANCE_ID is the ID of the specific EC2 instance you want to stop
+          instance_id= ${{ secrets.INSTANCE_ID }}
+          aws ec2 stop-instances --instance-ids $instance_id --region us-west-2

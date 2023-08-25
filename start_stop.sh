@@ -7,7 +7,7 @@ INSTANCE_STATUS=$(aws ec2 describe-instances --instance-ids "$INSTANCE_ID" --que
 
 if [ "$INSTANCE_STATUS" == "running" ]; then
   # Instance is already running
-  echo "Instance is already running. Running command..."
+  echo "Instance is already running..."
  # ssh -i path/to/key.pem ec2-user@public-ip "touch test.txt"
 else
   # Instance is not running
@@ -15,8 +15,8 @@ else
   aws ec2 start-instances --instance-ids "$INSTANCE_ID"
 
   # Wait for status checks to pass
-  aws ec2 wait instance-status-ok --instance-ids "$INSTANCE_ID"
+  # aws ec2 wait instance-status-ok --instance-ids "$INSTANCE_ID"
 
-  echo "Instance started. Instance 2/2 checks passed.."
-  #ssh -i path/to/key.pem ec2-user@public-ip "touch hello.txt"
+  # echo "Instance started. Instance 2/2 checks passed.."
+  # ssh -i path/to/key.pem ec2-user@public-ip "touch hello.txt"
 fi

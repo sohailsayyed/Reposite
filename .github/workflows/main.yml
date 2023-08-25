@@ -10,24 +10,15 @@ on:
 jobs:
   Deploy:
     name: Deploy to EC2
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     if: github.ref == 'refs/heads/master'
 
     steps:
       - uses: actions/checkout@v2 
-      - name: Build & Deploy
-        env:
-            PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-            HOSTNAME: 54.202.177.20
-            USER_NAME: ubuntu
-      
+      - name: git pull and create custom file
         run: |
-          echo "$PRIVATE_KEY" > private_key && ssh-keygen -y -f private_key && chmod 400 private_key 
+          cd Reposite/ 
+          touch github.actions-runner
           ls -al
-          cat private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-
-              # Now we have got the access of EC2 and we will start the deploy .
-              cd /home/ubuntu/ &&
-              touch login.txt
-              '
+          git clone
+          

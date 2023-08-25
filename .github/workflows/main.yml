@@ -8,18 +8,31 @@ on:
       - master
 
 jobs:
-  Deploy:
-    name: Deploy to EC2
-    runs-on: self-hosted
+  ubuntu-latest-job:
+    name: check ec2 status
+    runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
 
     steps:
       - uses: actions/checkout@v2 
+      - name: Checking EC2 status
+        run: |
+          pwd && ls
+          chmod +x start_stop.sh
+          pwd && ls
+          ./start_stop.sh
+
+  self-hosted-job:
+    name: Deploy on EC2
+    runs-on: self-hosted
+    if: github.ref == 'refs/heads/master'
+
+    steps:
+     
       - name: git pull and create custom file
         run: |
           cd /home/ubuntu/Reposite/
           git checkout master
-          touch master
+          touch testec2startandstop
           ls -al
           git pull
-          

@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v2 
       - name: git pull and create custom file
         run: |
-          cd Reposite/ 
+          cd /home/ubuntu/Reposite/
           touch github.actions-runner
           ls -al
           git clone

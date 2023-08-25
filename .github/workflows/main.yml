@@ -4,41 +4,42 @@ on:
   push:
     branches:
       - develop
-      - release/*
+      - 'release/*'
       - master
 
 jobs:
-  ubuntu-latest-job:
-    name: checkout & checking ec2 status
+  ec2-status-job:
+    name: Checkout & Checking EC2 Status
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
 
     steps:
-      - uses: actions/checkout@v2 
-      - name: Checking EC2 status
+      - name: Checkout Code
+        uses: actions/checkout@v2
 
-      - name: Configure AWS credentials
-      - uses: aws-actions/configure-aws-credentials@v1
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-2
 
-      - name: checkout & Checking EC2 status
+      - name: Run start_stop.sh
         run: |
-          pwd && ls
+          ls && pwd  # Change to your repository's root directory
           chmod +x start_stop.sh
-          pwd && ls
           ./start_stop.sh
 
-  self-hosted-job:
+  ec2-deploy-job:
     name: Deploy on EC2
     runs-on: self-hosted
     if: github.ref == 'refs/heads/master'
 
     steps:
-      - uses: actions/checkout@v2 
-      - name: git pull and create custom file
+      - name: Checkout Code
+        uses: actions/checkout@v2 
+
+      - name: Git Pull and Create Custom File
         run: |
           cd /home/ubuntu/Reposite/
           git checkout master
